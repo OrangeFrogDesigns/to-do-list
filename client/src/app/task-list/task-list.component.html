@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>Task List</mat-card-title>
+  <mat-card-content>
+    <input matInput placeholder="Search tasks" [(ngModel)]="searchStr">
+    
+    <mat-list>
+      <div class="list-item">
+      <mat-list-item *ngFor="let car of carList">
+
+          <img mat-list-avatar src="{{car.giphyUrl}}" alt="{{car.name}}">
+          <h3 mat-line (click)="toggleDetails(car)"
+          [ngClass]="{
+            'completeTask' : car.complete,
+            'incompleteTask' : !car.complete
+          }"
+          >
+            <a mat-button>{{car.name}}</a>
+            <a mat-button >{{car.category}}</a>
+          </h3>
+          <h5 mat-line *ngIf="car.open">
+            <a mat-button >{{car.description}}</a>
+            <a mat-button>{{car.dueDate}}</a>
+            <button *ngIf="!car.complete" (click)="setComplete(car)">Complete</button>
+          </h5>
+      </mat-list-item>
+    </div>
+    </mat-list>
+  </mat-card-content>
+  <button *ngIf="skip !== 0" mat-fab color="primary" (click)="prevItems()">Previous</button>
+  <button mat-fab color="primary" *ngIf="skip + 5 <= carList.length" (click)="nextItems()">Next</button>
+
+
+  <button mat-fab color="primary" [routerLink]="['/car-add']">Add</button>
+</mat-card>

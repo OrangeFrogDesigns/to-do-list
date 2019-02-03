@@ -1,0 +1,30 @@
+<mat-card>
+  <form #carForm="ngForm" (ngSubmit)="save(carForm.value)">
+    <mat-card-header>
+      <!-- <mat-card-title><h2>{{car.name ? 'Edit' : 'Add'}} Car</h2></mat-card-title> -->
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field>
+          <input matInput placeholder="Title" [(ngModel)]="car.name"
+                  name="name" #name>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="category" name="category" [(ngModel)]="car.category"> 
+        </mat-form-field>
+        <mat-form-field><input matInput placeholder="description" name="description" [(ngModel)]="car.description"></mat-form-field>
+        <mat-form-field><input matInput placeholder="dueDate" name="dueDate" [(ngModel)]="car.dueDate"></mat-form-field>
+        
+        
+
+      <input type="hidden" name="href" [(ngModel)]="car.href">
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit"
+              [disabled]="!carForm.form.valid">Save</button>
+      <button mat-raised-button color="secondary" (click)="remove(car.href)"
+              *ngIf="car.href" type="button">Delete</button>
+      <a mat-button routerLink="/car-list">Cancel</a>
+    </mat-card-actions>
+  </form>
+</mat-card>

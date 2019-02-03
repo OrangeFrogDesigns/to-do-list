@@ -1,0 +1,11 @@
+.incompleteTask {
+    color: red;
+}
+
+.completeTask {
+    color: black
+}
+
+.list-item {
+    border: 2px black;
+}
